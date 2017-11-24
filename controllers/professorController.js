@@ -1,9 +1,28 @@
 var Professor = require('../models/professor');
+var Course = require('../models/course');
+var Section = require('..//models/section');
 
-// Home page
-exports.index = function(req, res) {
-	res.send('NOT IMPLEMENTED: Site Home Page');
+var async = require('async');
+
+// Display the home page information
+exports.index = function(req,res) {
+
+	async.parallel({
+		professor_count: function(callback) {
+			Professor.count(callback);
+		},
+		course_count: function(callback) {
+			Course.count(callback);
+		},
+		section_count: function(callback) {
+			Section.count(callback);
+		},
+	}, function(err, results) {
+		res.render('index', { title: 'MSU Banner Home', error: err, data: results});
+	
+	});
 };
+
 
 // Display list of all Professors
 exports.professor_list = function(req, res) {

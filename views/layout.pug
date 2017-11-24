@@ -1,7 +1,35 @@
 doctype html
-html
-  head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
-  body
-    block content
+html(lnag='en')
+	head
+		title= title
+		meta(charset='utf-8')
+		meta(name='viewport', content='width=device-width, initial-scale=1')
+		link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+		script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js')
+		script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
+		link(rel='stylesheet', href='/stylesheets/style.css')
+	body
+		div(clas='container-fluid')
+			div(class='row')
+				div(class='col-sm-2')
+					block sidebar
+						ul(class='sidebar-nav')
+							li
+								a(href='/school') Home
+							li
+								a(href='/school/professors') All Professors
+							li
+								a(href='/school/courses') All Courses
+							li
+								a(href='/school/sections') All Sections
+							li
+								hr
+							li
+								a(href='/school/professor/create') New Professor
+							li
+								a(href='/school/course/create') New Course
+							li
+								a(href='/school/section/create') New Section
+
+				div(class='col-sm-10')
+					block content
