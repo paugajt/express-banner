@@ -1,0 +1,13 @@
+extends layout
+
+block content
+	h1= title
+
+	ul
+	each section in section_list
+		li
+			a(href=section.url) #{section.number}
+			|  (#{section.professor.name})
+
+	else
+		li There are no sections.

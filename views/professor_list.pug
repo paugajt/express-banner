@@ -1,0 +1,13 @@
+extends layout
+
+block content
+	h1= title
+
+	ul
+	each professor in professor_list
+		li
+			a(href=professor.url) #{professor.name}
+			| (#{professor.office})
+
+	else
+		li There are no authors.

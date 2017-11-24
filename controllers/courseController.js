@@ -1,8 +1,17 @@
 var Course = require('../models/course');
+var Professor = require('../models/professor');
+var Section = require('../models/section');
 
 // Display list of all Courses
-exports.course_list = function(req, res) {
-	res.send('NOT IMPLEMENTED: Course list');
+exports.course_list = function(req, res, next) {
+
+	Course.find()
+		.sort([['course_name', 'ascending']])
+		.exec(function (err, list_courses) {
+			if (err) { return next(err); }
+			//Successful, so render
+			res.render('course_list', {title: 'Cousre List', course_list: list_courses});
+		})
 };
 
 // Display detail page for specified Course

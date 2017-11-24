@@ -1,8 +1,17 @@
 var Section = require('../models/section');
+var Professor = require('../models/professor');
+var Course = require('../models/course');
 
 // Display list of all sections
-exports.section_list = function(req, res) {
-	res.send('NOT IMPLEMENTED: Section list');
+exports.section_list = function(req, res, next) {
+
+	Section.find({}, 'section professor')
+		.populate('professor')
+		.exec(function (err, list_sections) {
+			if (err) { return next(err); }
+			//Succesful, so render
+			res.render('section_list', {title: 'Section List', section_list: list_sections});
+		});
 };
 
 // Display detail page for specified Section

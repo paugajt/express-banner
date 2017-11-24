@@ -25,8 +25,15 @@ exports.index = function(req,res) {
 
 
 // Display list of all Professors
-exports.professor_list = function(req, res) {
-	res.send('NOT IMPLEMENTED: Professor list');
+exports.professor_list = function(req, res, next) {
+
+	Professor.find()
+		.sort([['name', 'ascending']])
+		.exec(function (err, list_professors) {
+			if (err) { return next(err); }
+			//Successful, so render
+			res.render('professor_list', { title: 'Professor List', professor_list: list_professors});
+		})
 };
 
 // Display detail page for specified Professor
