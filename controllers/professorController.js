@@ -37,8 +37,24 @@ exports.professor_list = function(req, res, next) {
 };
 
 // Display detail page for specified Professor
-exports.professor_detail = function(req, res) {
-	res.send('NOT IMPLEMENTED: Professor detail: ' + req.params.id);
+exports.professor_detail = function(req, res, next) {
+
+	async.parallel({
+		professor: function(callback) {
+			Professor.findById(req.params.id)
+				.exec(callback);
+		},
+		professors_sections: function(callback) {
+			Section.find({ 'professor': req.params.id }, 'professor_name')
+			.exec(callback);
+		},
+	}, function(err, results) {
+		if (err) { return next(err); }
+		//Successful, so render
+		res.render('professor_detail', { title: 'Professor Detail', professor: results.professor, professor_sections: results.professor_sections});
+	
+	});
+	
 };
 
 // Display Professor create form on GET
