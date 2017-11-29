@@ -10,7 +10,7 @@ exports.course_list = function(req, res, next) {
 		.exec(function (err, list_courses) {
 			if (err) { return next(err); }
 			//Successful, so render
-			res.render('course_list', {title: 'Cousre List', course_list: list_courses});
+			res.render('course_list', {title: 'Course List', course_list: list_courses});
 		})
 };
 

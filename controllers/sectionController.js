@@ -5,7 +5,7 @@ var Course = require('../models/course');
 // Display list of all sections
 exports.section_list = function(req, res, next) {
 
-	Section.find({}, 'section professor')
+	Section.find({})
 		.populate('course.course_name')
 		.populate('section_number')
 		.populate('professor')
@@ -17,15 +17,19 @@ exports.section_list = function(req, res, next) {
 };
 
 // Display detail page for specified Section
-exports.section_details = function(req, res, next) {
-
-	Section.findById(req.params.id)
-		.populate('course.course_name')
-		.populate('section_number')
-		.populate('professor')
-
+exports.section_detail = function(req, res) {
+	res.send('NOT IMPLEMENTED: Section detail');
+};
+	/*
+	async.parallel({
+		section: function(callback) {
+			Section.findById(req.params.id)
+				.exec(callback);
+		},
+		sections_
+	})
 }
-
+*/
 // Display Section create form on GET
 exports.section_create_get = function(req, res) {
 	res.send('NOT IMPLEMENTED: Section create GET');
