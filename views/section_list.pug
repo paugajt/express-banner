@@ -6,8 +6,8 @@ block content
 	ul
 	each section in section_list
 		li
-			a(href=section.url) #{section.number}
-			|  (#{section.professor.name})
+			a(href=section.url) #{section.course.course_name}
+			| Section #: #{section.section_number} Professor: #{section.professor.name}
 
 	else
 		li There are no sections.

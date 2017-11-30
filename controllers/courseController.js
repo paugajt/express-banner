@@ -15,10 +15,24 @@ exports.course_list = function(req, res, next) {
 };
 
 // Display detail page for specified Course
-exports.course_detail = function(req, res) {
-	res.send('NOT IMPLEMENTED: Course detail: ' + req.params.id);
-};
+exports.course_detail = function(req, res, next) {
 
+	async.parallel({
+		course: function(callback) {
+			Course.findById(req.params.id)
+				.exec(callback);
+		},
+		course_sections: function(callback) {
+			Section.find({'course': req.params.id}, 'section number')
+				.exec(callback);
+		},
+	}, function(err, results) {
+		if (err) {return next(err); }
+		//Successful so render
+		res.render('course_detail', {title: 'Course Detail', course: results.course, course_sections: results.course_sections});
+	
+	});
+};
 // Display Course create form on GET
 exports.course_create_get = function(req, res) {
 	res.send('NOT IMPLEMENTED: Course create GET');
