@@ -1,0 +1,17 @@
+extends layout
+
+block content
+
+	h1 Course: #{course.course_name}
+
+	div(style='margin-left:20px;margin-top:20px')
+
+		h4 Sections
+
+		dl
+		each section in course_sections
+			dt
+				a(href=section.url) #{section.section_number}
+
+		else
+			p This Course has no sections
