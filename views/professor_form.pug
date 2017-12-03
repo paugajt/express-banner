@@ -1,0 +1,18 @@
+extends layout
+
+block content
+	h1=title
+
+	form(method='POST' action='')
+		div.form-group
+			label(for='name') Professor Name:
+			input#name.form-control(type='text', placeholder='Name goes here' name='name' required='true' value=(undefined===professor ? '' : professor.name))
+			label(for='office') Office:
+			input#office.form-control(type='text', placeholder-'Office location' name='office' required='true' value=(undefined===professor ? '' : professor.office))
+			label(for='email') Email:
+			input#email.form-control(type='text', placeholder-'Email@email.com' name='email' required='true' value=(undefined===professor ? '' : professor.email))
+		button.btn.btn-primary(type='submit') Submit
+	if errors
+		ul
+			for error in errors
+				li!= error.msg

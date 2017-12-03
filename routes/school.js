@@ -15,19 +15,19 @@ router.get('/', professor_controller.index);
 router.get('/professor/create', professor_controller.professor_create_get);
 
 // POST request for creating a Professor.
-router.get('/professor/create', professor_controller.professor_create_post);
+router.post('/professor/create', professor_controller.professor_create_post);
 
 // GET request to delete a Professor.
 router.get('/professor/:id/delete', professor_controller.professor_delete_get);
 
 // POST request to delete a Professor.
-router.get('professor/:id/delete', professor_controller.professor_delete_post);
+router.post('professor/:id/delete', professor_controller.professor_delete_post);
 
 // GET request to update Professor.
 router.get('/professor/:id/update', professor_controller.professor_update_get);
 
 // POST request to update Professor.
-router.get('/professor/:id/update', professor_controller.professor_update_post);
+router.post('/professor/:id/update', professor_controller.professor_update_post);
 
 // GET request for one Professor.
 router.get('/professor/:id', professor_controller.professor_detail);
@@ -41,19 +41,19 @@ router.get('/professors', professor_controller.professor_list);
 router.get('/course/create', course_controller.course_create_get);
 
 // POST request for creating a Course.
-router.get('/course/create', course_controller.course_create_post);
+router.post('/course/create', course_controller.course_create_post);
 
 // GET request to delete a Course.
 router.get('/course/:id/delete', course_controller.course_delete_get);
 
 // POST request to delete a Course.
-router.get('/course/:id/delete', course_controller.course_delete_post);
+router.post('/course/:id/delete', course_controller.course_delete_post);
 
 // GET request to update Course.
 router.get('/course/:id/update', course_controller.course_update_get);
 
 // POST request to update Course.
-router.get('/course/:id/update', course_controller.course_update_post);
+router.post('/course/:id/update', course_controller.course_update_post);
 
 // GET request for one Course.
 router.get('/course/:id', course_controller.course_detail);
@@ -67,19 +67,19 @@ router.get('/courses', course_controller.course_list);
 router.get('/section/create', section_controller.section_create_get);
 
 // POST request for creating a Section.
-router.get('/section/create', section_controller.section_create_post);
+router.post('/section/create', section_controller.section_create_post);
 
 // GET request to delete a Section.
 router.get('/section/:id/delete', section_controller.section_delete_get);
 
 // POST request to delete a Section.
-router.get('/section/:id/delete', section_controller.section_delete_post);
+router.post('/section/:id/delete', section_controller.section_delete_post);
 
 // GET request to update a Section.
 router.get('/section/:id/update', section_controller.section_update_get);
 
 // POST request to update a Section.
-router.get('/section/:id/update', section_controller.section_update_post);
+router.post('/section/:id/update', section_controller.section_update_post);
 
 // GET request for one Section
 router.get('/section/:id', section_controller.section_detail);

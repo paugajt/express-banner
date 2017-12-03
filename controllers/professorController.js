@@ -56,12 +56,45 @@ exports.professor_detail = function(req, res, next) {
 };
 // Display Professor create form on GET
 exports.professor_create_get = function(req, res) {
-	res.send('NOT IMPLEMENTED: Professor create GET');
+	res.render('professor_form', {title: 'Create Professor'});
 };
 
 // Handle Professor create from POST
-exports.professor_create_post = function(req, res) {
-	res.send('NOT IMPLEMENTED: Professor create POST');
+exports.professor_create_post = function(req, res, next) {
+
+	req.checkBody('name', 'Name must be specified.').notEmpty();
+	req.checkBody('office', 'Office must be specified.').notEmpty();
+	req.checkBody('email', 'Email must be specified.').notEmpty();
+
+	req.sanitize('name').escape();
+	req.sanitize('office').escape();
+	req.sanitize('email').escape();
+	req.sanitize('name').trim();
+	req.sanitize('office').trim();
+	req.sanitize('email').trim();
+
+	// check for errors
+	var errors = req.validationErrors();
+	
+
+	var professor = new Professor(
+		{ name: req.body.name,
+		  office: req.body.office,
+		  email: req.body.email
+		});
+	if (errors) {
+		res.render('professor_form', {title: 'Create Professor', professor: professor, errors: errors});
+	return;
+	}
+	else {
+		//Data from from is valid
+
+		professor.save(function (err) {
+			if (err) { return next(err);}
+			//Successful - redirect to new professor record.
+			res.redirect(professor.url);
+		});
+	}
 };
 
 // Display Professor delete form on GET

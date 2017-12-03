@@ -36,7 +36,7 @@ exports.section_detail = function(req, res, next) {
 	
 	});
 };
-*/
+
 // Display Section create form on GET
 exports.section_create_get = function(req, res) {
 	res.send('NOT IMPLEMENTED: Section create GET');

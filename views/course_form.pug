@@ -1,0 +1,15 @@
+extends layout
+
+block content
+	h1 #{title}
+
+	form(method='POST' action='')
+		div.form-group
+			label(for='course_name') Course:
+			input#course_name.form-control(type='text', placeholder='Software Dev, Web App etc.' name='course_name' value=(undefined===course ? '' : course.course_name))
+		button.btn.btn-primary(type='submit') Submit
+
+	if errors
+		ul
+			for error in errors
+				li!= error.msg
